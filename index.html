@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Hello, World!</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        .section{
+            overflow: hidden;
+        }
+        .first {
+            /*塌陷overflow解决*/
+            overflow: hidden;
+        }
+        .first .logo {
+            width: 251px;
+            height: 186px;
+            display: block;
+            background: url("images/logo.png");
+            margin: 100px auto 0;
+        
+	
+	
+	
+	
+	
+	}
+        .first .text {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .first .text img {
+            margin-left: 80px;
+            opacity: .2;
+            transition: margin-left 2s, opacity 2s;
+        }
+        .first .text img:nth-of-type(1) {
+            margin-left: 0;
+       
+       
+       
+       
+       
+       
+       
+       }
+        .first.current .text img {
+            margin-left: 0;
+            opacity: 1;
+        }
+        .first .info {
+            width: 772px;
+            height: 49px;
+            background: url("images/info_1.png");
+            margin: 20px auto;
+        }
+
+        /*second*/
+        .second{
+
+        }
+        .second > div {
+            display: flex;
+            /*设置主轴方向上的排列方式*/
+            justify-content: space-around;
+            /*设置侧轴方向上的排列方式*/
+            align-items: center;
+        }
+        .second .shield{
+            width: 440px;
+            font-size: 0;
+        }
+        .second .info{
+            height: 309px;
+            width: 635px;
+            background: url("images/info_2.png");
+        }
+        .second .shield > img{
+            /*添加过渡效果*/
+            transition: transform 1s;
+        }
+        .second .shield > img:nth-of-type(1){
+            transform: translate(100px,100px) rotate(30deg);
+        }
+        .second .shield > img:nth-of-type(2){
+            transform: translate(-100px,-100px) rotate(-30deg);
+        }
+        .second .shield > img:nth-of-type(3){
+            transform: translate(200px,200px) rotate(60deg);
+        }
+        .second .shield > img:nth-of-type(4){
+            transform: translate(-200px,-200px) rotate(-60deg);
+        }
+        .second .shield > img:nth-of-type(5){
+            transform: translate(150px,150px) rotate(90deg);
+        }
+        .second .shield > img:nth-of-type(6){
+            transform: translate(50px,150px) rotate(-90deg);
+        }
+        .second .shield > img:nth-of-type(7){
+            transform: translate(-150px,-150px) rotate(60deg);
+        }
+        .second .shield > img:nth-of-type(8){
+            transform: translate(10px,-250px) rotate(-90deg);
+        }
+        .second .shield > img:nth-of-type(9){
+            transform: translate(-250px,10px) rotate(45deg);
+        }
+        /*添加第二屏过渡效果*/
+        .second.current .shield > img{
+            /*清除默认添加的transform*/
+            transform: none;
+        }
+
+        .third{
+            position: relative;
+        }
+        .third .info{
+            height: 278px;
+            width: 631px;
+            background: url("images/info_3.png");
+            position: absolute;
+            /*定位的参照是参照父容器的宽高 父元素的中心点*/
+            left: 50%;
+            top: 50%;
+            /*transform的translate是相对于元素本身的宽高*/
+            transform:translate(-100%,-50%);
+        }
+        .third .circle {
+            width: 453px;
+            height: 449px;
+            background: url("images/circle.png");
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform:translate(50%,-50%);
+
+        }
+        .third .circle .rocket {
+            width: 203px;
+            height: 204px;
+            background: url("images/rocket.png");
+            position: absolute;
+            left: -600px;
+            top: 800px;
+
+        }
+        .third.current .circle .rocket {
+            left: 125px;
+            top: 125px;
+            transition: left 1s, top 1s;
+        }
+
+        .fourth {
+            position: relative;
+        }
+        .fourth .search {
+            width: 529px;
+            height: 438px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-115%,-50%);
+            overflow: hidden;
+        }
+        .fourth .searchBar {
+            width: 529px;
+            height: 66px;
+            background: url("images/search.png");
+            transform: translate(-115%,0);
+
+        }
+        .fourth .searchText {
+            width: 0;
+            height: 22px;
+            background: url("images/key.png");
+            position: absolute;
+            top: 22px;
+            left: 22px;
+        }
+        .fourth .searchResult {
+            width: 529px;
+            height: 0;
+            background: url("images/result.png");
+
+        }
+        .fourth .info {
+            width: 612px;
+            height: 299px;
+            background: url("images/info_4.png");
+            position: absolute;
+            right: 50%;
+            top: 50%;
+            transform: translate(100%,-50%);
+        }
+        .fourth.current .searchBar {
+            transform: none;
+            transition: transform 1s;
+        }
+        .fourth.current .searchResult {
+            height: 439px;
+            transition: height 1s 1s;
+        }
+        .fourth.current .searchText {
+            width: 100px;
+            transition: width 1s 2s steps(5);
+        }
+    </style>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.fullPage.min.js"></script>
+</head>
+<body>
+<div id="fullPage">
+    <!--每一个section就是一屏-->
+    <div class="section first">
+        <a href="#" class="logo"></a>
+        <div class="text">
+            <img src="images/text_1.png" alt=""/>
+            <img src="images/text_2.png" alt=""/>
+            <img src="images/text_3.png" alt=""/>
+            <img src="images/text_4.png" alt=""/>
+            <img src="images/text_5.png" alt=""/>
+            <img src="images/text_6.png" alt=""/>
+            <img src="images/text_7.png" alt=""/>
+            <img src="images/text_8.png" alt=""/>
+        </div>
+        <div class="info"></div>
+    </div>
+    <div class="section second">
+        <div class="shield">
+            <img src="images/shield_1.png" alt="">
+            <img src="images/shield_2.png" alt="">
+            <img src="images/shield_3.png" alt="">
+            <img src="images/shield_4.png" alt="">
+            <img src="images/shield_5.png" alt="">
+            <img src="images/shield_6.png" alt="">
+            <img src="images/shield_7.png" alt="">
+            <img src="images/shield_8.png" alt="">
+            <img src="images/shield_9.png" alt="">
+        </div>
+        <div class="info"></div>
+    </div>
+    <div class="section third">
+        <div class="info"></div>
+        <div class="circle">
+            <div class="rocket"></div>
+        </div>
+    </div>
+    <div class="section fourth">
+        <div class="search">
+            <div class="searchBar"></div>
+            <div class="searchText"></div>
+            <div class="searchResult"></div>
+        </div>
+        <div class="info"></div>
+    </div>
+</div>
+<script>
+    $(function() {
+        $("#fullPage").fullpage({
+            sectionsColor:['#0da5d6', '#2AB561', '#DE8910', '#16BA9D', '#0DA5D6'],
+            afterLoad:function(anchorLink,index){
+                $(".section").removeClass("current");
+                $(".section").eq(index-1).addClass("current");
+            }
+        });
+    });
+</script>
+</body>
+</html>
